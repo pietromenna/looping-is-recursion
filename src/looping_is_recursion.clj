@@ -55,7 +55,14 @@
       (recur (toggle result (first b-seq)) (rest b-seq)))))
 
 (defn fast-fibo [n]
-	)
+	(loop [iteration 2
+           fib-2 0
+           fib-1 1]
+   (cond
+     (= n 0) 0
+     (= n 1) 1
+     (= iteration n) (+ fib-2 fib-1)
+     :else (recur (inc iteration) fib-1 (+ fib-2 fib-1) ))))
 
 (defn cut-at-repetition [a-seq]
   (loop [result '()
