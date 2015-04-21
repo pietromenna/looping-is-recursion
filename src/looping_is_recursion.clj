@@ -40,12 +40,27 @@
       (recur (rest current) (+ sum (first current)) (inc entries)))
     ))
 
+(defn toggle [a-set elem]
+  (if (contains? a-set elem)
+      (disj a-set elem)
+      (conj a-set elem)
+    )
+  )
+
 (defn parity [a-seq]
-  ":(")
+  (loop [result #{}
+         b-seq a-seq]
+    (if (empty? b-seq)
+      result
+      (recur (toggle result (first b-seq)) (rest b-seq)))))
 
 (defn fast-fibo [n]
-  ":(")
+	)
 
 (defn cut-at-repetition [a-seq]
-  [":("])
+  (loop [result '()
+         current a-seq]
+    (if (or (empty? current) (some #{(first current)} result))
+      (reverse result)
+      (recur (cons (first current) result) (rest current)))))
 
